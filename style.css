@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Inter', sans-serif;
+  color: #d4af37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.hero {
+  text-align: center;
+}
+
+.logo {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
