@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vantira Realty | Escrow Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Vantira Realty - No Hassles</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Create Escrow</h2>
+      <input id="buyer" placeholder="Buyer Address" />
+      <input id="seller" placeholder="Seller Address" />
+      <input id="amount" placeholder="Amount in ETH" type="number" />
+      <button onclick="createEscrow()">Create Escrow</button>
+    </section>
+
+    <section>
+      <h2>Get Escrows</h2>
+      <button onclick="getEscrows()">Fetch Escrows</button>
+      <ul id="escrowList"></ul>
+    </section>
+
+    <section>
+      <h2>Release Funds</h2>
+      <input id="escrowId" placeholder="Escrow ID" />
+      <button onclick="releaseFunds()">Release</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import abi from './MultiEscrowManager.abi.json' assert { type: 'json' };
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const contractAddress = '0xdf24a2f84d0b68288239593a1c28edc21c4c63d8';
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+
+    window.createEscrow = async () => {
+      const buyer = document.getElementById('buyer').value;
+      const seller = document.getElementById('seller').value;
+      const amountEth = document.getElementById('amount').value;
+      const amountWei = ethers.parseEther(amountEth);
+
+      try {
+        const tx = await contract.createEscrow(buyer, seller, { value: amountWei });
+        await tx.wait();
+        alert('Escrow created successfully!');
+      } catch (err) {
+        console.error(err);
+        alert('Transaction failed.');
+      }
+    };
+
+    window.getEscrows = async () => {
+      const ul = document.getElementById('escrowList');
+      ul.innerHTML = '';
+
+      try {
+        const escrows = await contract.getEscrows();
+        escrows.forEach((e, idx) => {
+          const li = document.createElement('li');
+          li.textContent = `#${idx} Buyer: ${e.buyer}, Seller: ${e.seller}, Amount: ${ethers.formatEther(e.amount)} ETH, Released: ${e.isReleased}`;
+          ul.appendChild(li);
+        });
+      } catch (err) {
+        console.error(err);
+        alert('Failed to fetch escrows.');
+      }
+    };
+
+    window.releaseFunds = async () => {
+      const escrowId = document.getElementById('escrowId').value;
+      try {
+        const tx = await contract.releaseFunds(escrowId);
+        await tx.wait();
+        alert('Funds released!');
+      } catch (err) {
+        console.error(err);
+        alert('Failed to release funds.');
+      }
+    };
+  </script>
+</body>
+</html>
