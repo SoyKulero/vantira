@@ -2,58 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vantira Realty</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body.realty-body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #e6c979;
+      background: url("assets/handshake.png") center/cover no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .realty-overlay {
+      backdrop-filter: blur(6px);
+      background-color: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .realty-header {
+      background: linear-gradient(to right, #c59d48, #a8822b);
+      padding: 1rem 2rem;
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .return-btn {
+      background: none;
+      border: none;
+      color: black;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .realty-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .realty-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .realty-subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .state-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lock-icon {
+      width: 40px;
+      height: auto;
+    }
+
+    .state-box {
+      background: #3a2e14;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .participant-section input {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: #2a2a2a;
+      border: 1px solid #555;
+      color: #fff;
+    }
+
+    .functions-section button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #5c441a;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .functions-section button:hover {
+      background: #a8822b;
+    }
+  </style>
 </head>
 <body class="realty-body">
-  <header class="header center scale-in">
-    <img src="/assets/logo.png" alt="Vantira Logo" class="logo" />
-    <h1 class="tagline">Agreements without the Hassle</h1>
-  </header>
+  <div class="realty-overlay">
+    <div class="realty-header">
+      <span>Vantira Realty</span>
+      <button onclick="location.href='index.html'" class="return-btn">← Return to Home</button>
+    </div>
 
-  <main class="realty-main scale-in">
-    <section class="escrow-box">
-      <h2 class="section-title">Create Escrow</h2>
-      <input type="text" placeholder="Buyer Address" id="buyer" />
-      <input type="text" placeholder="Seller Address" id="seller" />
-      <input type="text" placeholder="Amount in ETH" id="amount" />
-      <button onclick="createEscrow()">Create Escrow</button>
-    </section>
+    <div class="realty-container">
+      <h1 class="realty-title">EscrowTemplate</h1>
+      <p class="realty-subtitle">
+        A reusable escrow contract template for handling secure transactions with reentrancy protection,
+        role-based access, and emergency controls.
+      </p>
 
-    <section class="escrow-box">
-      <h2 class="section-title">Release Funds</h2>
-      <input type="text" placeholder="Escrow ID" id="escrowId" />
-      <button onclick="releaseFunds()">Release</button>
-    </section>
+      <div class="state-section">
+        <img src="assets/lock-icon.png" alt="Shield" class="lock-icon"/>
+        <div>
+          <p class="section-title">Current State</p>
+          <div class="state-box">Awaiting Payment</div>
+        </div>
+      </div>
 
-    <section class="escrow-box">
-      <button onclick="fetchEscrows()">Fetch Escrows</button>
-      <pre id="escrowsDisplay"></pre>
-    </section>
-  </main>
+      <div class="participant-section">
+        <p class="section-title">Participant Addresses</p>
+        <p>Buyer</p><input type="text" placeholder="Buyer Address"/>
+        <p>Seller</p><input type="text" placeholder="Seller Address"/>
+        <p>Escrow Agent</p><input type="text" placeholder="Escrow Agent Address"/>
+      </div>
 
-  <footer class="footer">
-    <a href="index.html">&#8592; Back to Home</a>
-  </footer>
-
-  <script>
-    function createEscrow() {
-      const buyer = document.getElementById('buyer').value;
-      const seller = document.getElementById('seller').value;
-      const amount = document.getElementById('amount').value;
-      alert(`Creating escrow: Buyer: ${buyer}, Seller: ${seller}, Amount: ${amount}`);
-    }
-
-    function releaseFunds() {
-      const id = document.getElementById('escrowId').value;
-      alert(`Releasing funds for Escrow ID: ${id}`);
-    }
-
-    function fetchEscrows() {
-      document.getElementById('escrowsDisplay').textContent = "[Escrow 1: Pending... \n Escrow 2: Released]";
-    }
-  </script>
+      <div class="functions-section">
+        <p class="section-title">Functions</p>
+        <button>Deposit</button>
+        <button>Approve Inspection</button>
+        <button>Confirm Property Transfer</button>
+        <button>Release Funds</button>
+        <button>Emergency Withdraw</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
