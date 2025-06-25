@@ -1,27 +1,24 @@
+<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vantira</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="hero">
-      <img src="assets/handshake.png" alt="Handshake" class="handshake" />
-      <h1 class="title gold-text">VANTIRA</h1>
-      <p class="motto gold-text">Agreements without the hassle</p>
-      <a href="realty.html" class="realty-btn">Visit Vantira Realty</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VANTIRA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
+    </video>
+    <div class="overlay">
+      <h1 class="title">VANTIRA</h1>
+      <p class="subtitle">Agreements without the hassle</p>
+      <a href="realty.html" class="realty-link" title="Go to Vantira Realty">
+        <img src="assets/company name.png" alt="Realty Link" />
+      </a>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelector(".hero").classList.add("visible");
-      });
-    </script>
-  </body>
+  </div>
+</body>
 </html>

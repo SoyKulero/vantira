@@ -1,120 +1,62 @@
-/* === General Setup === */
-body {
+/* /style.css */
+body, html {
   margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'Inter', sans-serif;
-  color: #e6c979;
+  overflow: hidden;
 }
 
-/* === Realty Page Background === */
-.realty-body {
-  background: url("assets/handshake.png") center/cover no-repeat fixed;
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
 }
 
-/* === Overlay & Wrapper === */
-.realty-overlay {
-  backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.75);
-  min-height: 100vh;
-  padding: 2rem;
+.background-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-/* === Header Banner === */
-.realty-header {
-  background: linear-gradient(to right, #c59d48, #a8822b);
-  padding: 1rem 2rem;
-  color: black;
-  font-weight: bold;
-  text-align: left;
-  border-radius: 6px;
-  margin-bottom: 2rem;
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #f5d372;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-shadow: 1px 1px 10px #000;
 }
 
-.return-btn {
-  background: none;
-  border: none;
-  color: black;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: underline;
+.title {
+  font-size: 5vw;
+  margin: 0;
 }
 
-/* === Main Form Container === */
-.realty-container {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+.subtitle {
+  font-size: 1.8vw;
+  margin-top: 1rem;
 }
 
-.realty-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.realty-link {
+  position: absolute;
+  left: 2%;
+  bottom: 5%;
+  width: 60px;
+  transition: transform 0.3s ease;
 }
 
-.realty-subtitle {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-.section-title {
-  font-weight: bold;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* === Current State UI === */
-.state-section {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.lock-icon {
-  width: 40px;
+.realty-link img {
+  width: 100%;
   height: auto;
+  filter: brightness(1.2);
 }
 
-.state-box {
-  background: #3a2e14;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-/* === Address Input Fields === */
-.participant-section input {
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  background: #2a2a2a;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 4px;
-}
-
-/* === Function Buttons === */
-.functions-section button {
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background: #5c441a;
-  color: #fff;
-  border: none;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.functions-section button:hover {
-  background: #a8822b;
-  color: #000;
+.realty-link:hover {
+  transform: scale(1.1);
 }
