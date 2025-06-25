@@ -1,73 +1,30 @@
-/* Reset + Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* File: vantira/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: url('20250623_2321_Golden Handshake Silhouette_remix_01jyg2js8df7ctnx42kz01fd1q.png') no-repeat center center/cover;
-  color: white;
-  height: 100vh;
+  background: url("assets/handshake.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+.center {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-/* Hero Section */
-.hero {
   text-align: center;
-  max-width: 90%;
-  animation: scaleIn 0.6s ease-out;
 }
 
-/* Logo */
-.logo {
-  width: 140px;
-  margin-bottom: 20px;
+.scale-in {
+  animation: scaleIn 0.5s ease-in-out;
 }
 
-/* Title */
-.main-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin-bottom: 10px;
-}
-
-/* Subliminal Motto */
-.motto {
-  font-size: 1rem;
-  opacity: 0.35;
-  font-style: italic;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-}
-
-/* Button */
-.realty-btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 28px;
-  background-color: #f5c518;
-  color: #111;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 10px;
-  font-size: 1rem;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.realty-btn:hover {
-  transform: scale(1.05);
-  background-color: #ffe36e;
-}
-
-/* Animations */
 @keyframes scaleIn {
   from {
-    transform: scale(0.92);
+    transform: scale(0.95);
     opacity: 0;
   }
   to {
@@ -76,22 +33,94 @@ body {
   }
 }
 
-.scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
+/* Header */
+.header {
+  margin-top: 2rem;
 }
 
-.scale-in-delay {
-  animation: scaleIn 0.8s ease-out forwards;
+.logo {
+  width: 120px;
+  height: auto;
 }
 
-.fade-in {
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 0.7s;
-  opacity: 0;
+.tagline {
+  font-size: 1.5rem;
+  color: #f5d26d;
+  margin-top: 0.5rem;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 0.35;
-  }
+/* Main */
+.realty-main {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(245, 210, 109, 0.3);
+}
+
+.escrow-box {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  background-color: #f5d26d;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background-color: #e0be55;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+pre {
+  background-color: #111;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #f9f9f9;
+  white-space: pre-wrap;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }

@@ -3,88 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vantira Realty | Escrow Manager</title>
+  <title>Vantira Realty</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
 </head>
-<body>
-  <header>
-    <h1>Vantira Realty - No Hassles</h1>
+<body class="realty-body">
+  <header class="header center scale-in">
+    <img src="/assets/logo.png" alt="Vantira Logo" class="logo" />
+    <h1 class="tagline">Agreements without the Hassle</h1>
   </header>
-  <main>
-    <section>
-      <h2>Create Escrow</h2>
-      <input id="buyer" placeholder="Buyer Address" />
-      <input id="seller" placeholder="Seller Address" />
-      <input id="amount" placeholder="Amount in ETH" type="number" />
+
+  <main class="realty-main scale-in">
+    <section class="escrow-box">
+      <h2 class="section-title">Create Escrow</h2>
+      <input type="text" placeholder="Buyer Address" id="buyer" />
+      <input type="text" placeholder="Seller Address" id="seller" />
+      <input type="text" placeholder="Amount in ETH" id="amount" />
       <button onclick="createEscrow()">Create Escrow</button>
     </section>
 
-    <section>
-      <h2>Get Escrows</h2>
-      <button onclick="getEscrows()">Fetch Escrows</button>
-      <ul id="escrowList"></ul>
+    <section class="escrow-box">
+      <h2 class="section-title">Release Funds</h2>
+      <input type="text" placeholder="Escrow ID" id="escrowId" />
+      <button onclick="releaseFunds()">Release</button>
     </section>
 
-    <section>
-      <h2>Release Funds</h2>
-      <input id="escrowId" placeholder="Escrow ID" />
-      <button onclick="releaseFunds()">Release</button>
+    <section class="escrow-box">
+      <button onclick="fetchEscrows()">Fetch Escrows</button>
+      <pre id="escrowsDisplay"></pre>
     </section>
   </main>
 
-  <script type="module">
-    import abi from './MultiEscrowManager.abi.json' assert { type: 'json' };
+  <footer class="footer">
+    <a href="index.html">&#8592; Back to Home</a>
+  </footer>
 
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const contractAddress = '0xdf24a2f84d0b68288239593a1c28edc21c4c63d8';
-    const contract = new ethers.Contract(contractAddress, abi, signer);
-
-    window.createEscrow = async () => {
+  <script>
+    function createEscrow() {
       const buyer = document.getElementById('buyer').value;
       const seller = document.getElementById('seller').value;
-      const amountEth = document.getElementById('amount').value;
-      const amountWei = ethers.parseEther(amountEth);
+      const amount = document.getElementById('amount').value;
+      alert(`Creating escrow: Buyer: ${buyer}, Seller: ${seller}, Amount: ${amount}`);
+    }
 
-      try {
-        const tx = await contract.createEscrow(buyer, seller, { value: amountWei });
-        await tx.wait();
-        alert('Escrow created successfully!');
-      } catch (err) {
-        console.error(err);
-        alert('Transaction failed.');
-      }
-    };
+    function releaseFunds() {
+      const id = document.getElementById('escrowId').value;
+      alert(`Releasing funds for Escrow ID: ${id}`);
+    }
 
-    window.getEscrows = async () => {
-      const ul = document.getElementById('escrowList');
-      ul.innerHTML = '';
-
-      try {
-        const escrows = await contract.getEscrows();
-        escrows.forEach((e, idx) => {
-          const li = document.createElement('li');
-          li.textContent = `#${idx} Buyer: ${e.buyer}, Seller: ${e.seller}, Amount: ${ethers.formatEther(e.amount)} ETH, Released: ${e.isReleased}`;
-          ul.appendChild(li);
-        });
-      } catch (err) {
-        console.error(err);
-        alert('Failed to fetch escrows.');
-      }
-    };
-
-    window.releaseFunds = async () => {
-      const escrowId = document.getElementById('escrowId').value;
-      try {
-        const tx = await contract.releaseFunds(escrowId);
-        await tx.wait();
-        alert('Funds released!');
-      } catch (err) {
-        console.error(err);
-        alert('Failed to release funds.');
-      }
-    };
+    function fetchEscrows() {
+      document.getElementById('escrowsDisplay').textContent = "[Escrow 1: Pending... \n Escrow 2: Released]";
+    }
   </script>
 </body>
 </html>
