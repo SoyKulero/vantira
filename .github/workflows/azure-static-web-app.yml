@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Azure Static Web Apps Deploy
 
 on:
   push:
@@ -6,22 +6,21 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Deploy Static Site
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Upload artifact for deployment
-        uses: azure/static-web-apps-deploy@v1
+        uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                 
-          api_location: ""                 
-          output_location: "/"            
+          app_location: "/"            # Site lives at the repo root
+          api_location: ""             # You have no API folder
+          output_location: "/"        # No separate build output directory
