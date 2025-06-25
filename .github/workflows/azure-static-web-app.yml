@@ -21,6 +21,6 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"            # Site lives at the repo root
-          api_location: ""             # You have no API folder
-          output_location: "/"        # No separate build output directory
+          app_location: "/"            
+          api_location: ""             
+          output_location: "/"      
