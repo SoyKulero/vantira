@@ -60,3 +60,35 @@ body, html {
 .realty-link:hover {
   transform: scale(1.1);
 }
+/* Fullscreen Video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Realty Button - Center Left */
+.realty-btn {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: inline-block;
+  background: transparent;
+  border: none;
+}
+
+.realty-btn img {
+  width: 80px;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.realty-btn:hover img {
+  transform: scale(1.1);
+}

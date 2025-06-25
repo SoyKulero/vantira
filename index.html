@@ -8,17 +8,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="video-container">
-    <video autoplay muted loop playsinline class="background-video">
-      <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
-    </video>
-    <div class="overlay">
-      <h1 class="title">VANTIRA</h1>
-      <p class="subtitle">Agreements without the hassle</p>
-      <a href="realty.html" class="realty-link" title="Go to Vantira Realty">
-        <img src="assets/company name.png" alt="Realty Link" />
-      </a>
-    </div>
-  </div>
+  <video autoplay muted playsinline id="bg-video">
+    <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <a href="realty.html" class="realty-btn">
+    <img src="assets/company name.png" alt="Vantira Realty" />
+  </a>
+
+  <script>
+    // Stop video after first play
+    document.getElementById("bg-video").addEventListener("ended", function () {
+      this.pause();
+    });
+  </script>
 </body>
 </html>
