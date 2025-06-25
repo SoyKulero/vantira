@@ -1,126 +1,147 @@
-/* File: vantira/style.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
+/* === Vantira Brand Styling === */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Inter', sans-serif;
-  background: url("assets/handshake.png") no-repeat center center fixed;
+  background: #0d0d0d url("assets/handshake.png") no-repeat center;
   background-size: cover;
-  color: #fff;
+  background-blend-mode: overlay;
+  background-color: #0d0d0d;
+  color: #f5f0dc;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.center {
+/* === Hero Layout === */
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.scale-in {
-  animation: scaleIn 0.5s ease-in-out;
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Header */
-.header {
-  margin-top: 2rem;
-}
-
-.logo {
-  width: 120px;
-  height: auto;
-}
-
-.tagline {
-  font-size: 1.5rem;
-  color: #f5d26d;
-  margin-top: 0.5rem;
-}
-
-/* Main */
-.realty-main {
-  max-width: 600px;
-  margin: 2rem auto;
+  height: 100%;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.75);
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(245, 210, 109, 0.3);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 1s ease, transform 0.8s ease;
 }
 
-.escrow-box {
+/* Animate when visible */
+.hero.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* === Typography === */
+.title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+  color: #ffd700; /* gold */
+  text-shadow: 0 0 12px #caa100;
+  letter-spacing: 2px;
+}
+
+.motto {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ffcc66;
   margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
-.section-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+/* === Handshake Image === */
+.handshake {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(0 0 12px #aa8600);
   margin-bottom: 1rem;
-  color: #ffd700;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #222;
-  color: #fff;
-  font-size: 1rem;
-}
-
-button {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-  background-color: #f5d26d;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+/* === Button === */
+.realty-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: #d4af37;
+  color: #0d0d0d;
   font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  background-color: #e0be55;
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
-}
-
-pre {
-  background-color: #111;
-  padding: 1rem;
-  border-radius: 8px;
-  color: #f9f9f9;
-  white-space: pre-wrap;
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-.footer {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.footer a {
-  color: #ffd700;
+  border: none;
+  border-radius: 6px;
   text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
-.footer a:hover {
-  text-decoration: underline;
+.realty-btn:hover {
+  background-color: #f5c518;
+  transform: scale(1.05);
+}
+/* === Mobile Responsive Adjustments === */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .motto {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .handshake {
+    width: 120px;
+  }
+
+  .realty-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .motto {
+    font-size: 0.95rem;
+  }
+
+  .realty-btn {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+}
+/* === Animation Keyframes === */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Animation Classes === */
+.hero.visible .title {
+  animation: fadeSlideUp 1s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.hero.visible .motto {
+  animation: fadeSlideUp 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.hero.visible .handshake {
+  animation: fadeSlideUp 1s ease-out 0s forwards;
+  opacity: 0;
+}
+
+.hero.visible .realty-btn {
+  animation: fadeSlideUp 1s ease-out 0.8s forwards;
+  opacity: 0;
 }

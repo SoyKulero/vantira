@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vantira</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="van-bg van-text center-content">
-    <div class="container scale-in">
-      <img src="assets/logo.png" alt="Vantira Logo" class="van-logo" />
-      <h1 class="van-title">VANTIRA</h1>
-      <p class="van-subtitle">Agreements without the Hassle</p>
-
-      <div class="van-links">
-        <a href="realty.html" class="van-btn">Visit Vantira Realty</a>
-      </div>
-
-      <div class="van-motto">
-        <img src="assets/motto.png" alt="Motto" />
-      </div>
-
-      <div class="van-footer">
-        <img src="assets/company name.png" alt="Company" class="van-company" />
-      </div>
+  <body>
+    <div class="hero">
+      <img src="assets/handshake.png" alt="Handshake" class="handshake" />
+      <h1 class="title gold-text">VANTIRA</h1>
+      <p class="motto gold-text">Agreements without the hassle</p>
+      <a href="realty.html" class="realty-btn">Visit Vantira Realty</a>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".hero").classList.add("visible");
+      });
+    </script>
   </body>
 </html>
