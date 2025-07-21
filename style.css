@@ -1,12 +1,12 @@
 /* /style.css */
 
 html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Background Video Container */
@@ -74,7 +74,11 @@ html, body {
   background-size: cover;
   font-family: 'Inter', sans-serif;
   color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
 
 .realty-header {
   background: linear-gradient(to right, gold, transparent);
