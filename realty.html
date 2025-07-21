@@ -1,159 +1,96 @@
+<!-- /realty.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vantira Realty</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    body.realty-body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: #e6c979;
-      background: url("assets/handshake.png") center/cover no-repeat;
-      background-attachment: fixed;
-      position: relative;
-    }
-
-    .realty-overlay {
-      backdrop-filter: blur(6px);
-      background-color: rgba(0, 0, 0, 0.75);
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    .realty-header {
-      background: linear-gradient(to right, #c59d48, #a8822b);
-      padding: 1rem 2rem;
-      color: black;
-      font-weight: bold;
-      text-align: left;
-      border-radius: 6px;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .return-btn {
-      background: none;
-      border: none;
-      color: black;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .realty-container {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .realty-title {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .realty-subtitle {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-
-    .section-title {
-      font-weight: bold;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .state-section {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .lock-icon {
-      width: 40px;
-      height: auto;
-    }
-
-    .state-box {
-      background: #3a2e14;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      display: inline-block;
-    }
-
-    .participant-section input {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      background: #2a2a2a;
-      border: 1px solid #555;
-      color: #fff;
-    }
-
-    .functions-section button {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      background: #5c441a;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .functions-section button:hover {
-      background: #a8822b;
-    }
-  </style>
 </head>
 <body class="realty-body">
-  <div class="realty-overlay">
-    <div class="realty-header">
-      <span>Vantira Realty</span>
-      <button onclick="location.href='index.html'" class="return-btn">← Return to Home</button>
-    </div>
 
-    <div class="realty-container">
-      <h1 class="realty-title">EscrowTemplate</h1>
-      <p class="realty-subtitle">
-        A reusable escrow contract template for handling secure transactions with reentrancy protection,
-        role-based access, and emergency controls.
-      </p>
+  <!-- Top Gold Banner -->
+  <header class="realty-header">
+    <a href="index.html" class="back-home">⟵ Back to Home</a>
+    <h1>Vantira Realty</h1>
+  </header>
 
-      <div class="state-section">
-        <img src="assets/lock-icon.png" alt="Shield" class="lock-icon"/>
-        <div>
-          <p class="section-title">Current State</p>
-          <div class="state-box">Awaiting Payment</div>
-        </div>
-      </div>
+  <!-- Background Overlay -->
+  <div class="realty-overlay"></div>
 
-      <div class="participant-section">
-        <p class="section-title">Participant Addresses</p>
-        <p>Buyer</p><input type="text" placeholder="Buyer Address"/>
-        <p>Seller</p><input type="text" placeholder="Seller Address"/>
-        <p>Escrow Agent</p><input type="text" placeholder="Escrow Agent Address"/>
-      </div>
+  <main class="realty-main">
+    <section class="form-section">
+      <h2>Create Escrow</h2>
+      <input id="buyer" type="text" placeholder="Buyer Address" />
+      <input id="seller" type="text" placeholder="Seller Address" />
+      <input id="amount" type="number" placeholder="Amount (ETH)" />
+      <button onclick="createEscrow()">Create</button>
+    </section>
 
-      <div class="functions-section">
-        <p class="section-title">Functions</p>
-        <button>Deposit</button>
-        <button>Approve Inspection</button>
-        <button>Confirm Property Transfer</button>
-        <button>Release Funds</button>
-        <button>Emergency Withdraw</button>
-      </div>
-    </div>
-  </div>
+    <section class="list-section">
+      <h2>Active Escrows</h2>
+      <button onclick="getEscrows()">Refresh</button>
+      <ul id="escrowList"></ul>
+    </section>
+
+    <section class="release-section">
+      <h2>Release Funds</h2>
+      <input id="escrowId" type="number" placeholder="Escrow ID" />
+      <button onclick="releaseFunds()">Release</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import abi from './MultiEscrowManager.abi.json' assert { type: 'json' };
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract("0xdf24a2f84d0b68288239593a1c28edc21c4c63d8", abi, signer);
+
+    window.createEscrow = async () => {
+      const buyer = document.getElementById('buyer').value;
+      const seller = document.getElementById('seller').value;
+      const amountEth = document.getElementById('amount').value;
+      const amountWei = ethers.utils.parseEther(amountEth);
+
+      try {
+        const tx = await contract.createEscrow(buyer, seller, { value: amountWei });
+        await tx.wait();
+        alert('Escrow created successfully!');
+      } catch (err) {
+        console.error(err);
+        alert('Transaction failed.');
+      }
+    };
+
+    window.getEscrows = async () => {
+      const ul = document.getElementById('escrowList');
+      ul.innerHTML = '';
+
+      try {
+        const escrows = await contract.getEscrows();
+        escrows.forEach((e, idx) => {
+          const li = document.createElement('li');
+          li.textContent = `#${idx} Buyer: ${e.buyer}, Seller: ${e.seller}, Amount: ${ethers.utils.formatEther(e.amount)} ETH, Released: ${e.isReleased}`;
+          ul.appendChild(li);
+        });
+      } catch (err) {
+        console.error(err);
+        alert('Failed to fetch escrows.');
+      }
+    };
+
+    window.releaseFunds = async () => {
+      const escrowId = document.getElementById('escrowId').value;
+      try {
+        const tx = await contract.releaseFunds(escrowId);
+        await tx.wait();
+        alert('Funds released!');
+      } catch (err) {
+        console.error(err);
+        alert('Failed to release funds.');
+      }
+    };
+  </script>
 </body>
 </html>
