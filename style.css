@@ -1,39 +1,42 @@
 /* /style.css */
-body, html {
+
+html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   font-family: 'Inter', sans-serif;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
+/* Background Video Container */
 .video-container {
   position: relative;
   width: 100%;
   height: 100vh;
 }
 
+/* Video and fallback image */
 #bg-video,
 .fallback {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   z-index: -1;
 }
 
-/* Realty Button - Center Left */
+/* Realty Button - Responsive Center Left */
 .realty-btn {
   position: absolute;
   top: 50%;
-  left: 40px;
+  left: 3vw;
   transform: translateY(-50%);
-  z-index: 10;
-  display: inline-block;
-  background: transparent;
+  background: none;
   border: none;
+  z-index: 10;
 }
 
 .realty-btn img {
@@ -44,4 +47,21 @@ body, html {
 
 .realty-btn:hover img {
   transform: scale(1.1);
+}
+
+/* Responsive Scaling for Mobile */
+@media (max-width: 768px) {
+  .realty-btn {
+    left: 2vw;
+  }
+
+  .realty-btn img {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .realty-btn img {
+    width: 50px;
+  }
 }
