@@ -11,12 +11,11 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
       width: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow: hidden;
-      position: relative;
       background-color: black;
     }
 
@@ -79,7 +78,7 @@
 </head>
 <body>
 
-  <!-- Background Video -->
+  <!-- Background Video WITHOUT loop -->
   <video id="heroVideo" autoplay muted playsinline>
     <source src="assets/video.mp4" type="video/mp4" />
     Your browser does not support the video tag.
@@ -90,24 +89,25 @@
     <button id="vantiraButton">Vantira Realty</button>
   </div>
 
-  <!-- JS to reveal button after first video loop -->
+  <!-- JavaScript -->
   <script>
     const video = document.getElementById("heroVideo");
     const buttonContainer = document.querySelector(".button-container");
     const button = document.getElementById("vantiraButton");
 
-    // On first video end, show button and enable loop
+    // Show button after first full playthrough
     video.addEventListener("ended", () => {
       buttonContainer.style.display = "block";
       button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
 
+      // Enable loop from now on
       video.loop = true;
       video.play();
     }, { once: true });
 
-    // Optional: button click action
+    // Optional: click behavior
     button.addEventListener("click", () => {
-      window.location.href = "realty.html"; // Adjust if needed
+      window.location.href = "realty.html"; // Or wherever you want
     });
   </script>
 
