@@ -1,28 +1,117 @@
-<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VANTIRA</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vantira</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none; /* Hidden by default */
+      z-index: 2;
+    }
+
+    #vantiraButton {
+      padding: 1rem 2rem;
+      border: 2px solid gold;
+      background: transparent;
+      color: black;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    #vantiraButton:hover {
+      background: gold;
+      color: black;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Fade-in animation */
+    @keyframes luxuryFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      #vantiraButton {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="video-container">
-    <video autoplay muted playsinline poster="assets/fallback.jpg" id="bg-video">
-      <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
-      <img src="assets/fallback.jpg" alt="VANTIRA Background" class="fallback" />
-    </video>
 
-    <a href="realty.html" class="realty-btn" title="Enter Realty Site">
-      <img src="assets/company name.png" alt="Vantira Realty" />
-    </a>
+  <!-- Background Video -->
+  <video id="heroVideo" autoplay muted playsinline>
+    <source src="assets/video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Vantira Realty Button -->
+  <div class="button-container">
+    <button id="vantiraButton">Vantira Realty</button>
   </div>
 
+  <!-- JS: Reveal button after 1 video loop -->
   <script>
-    document.getElementById("bg-video").addEventListener("ended", function () {
-      this.pause();
+    const video = document.getElementById("heroVideo");
+    const buttonContainer = document.querySelector(".button-container");
+    const button = document.getElementById("vantiraButton");
+
+    // Wait for the first loop of the video to finish
+    video.addEventListener("ended", () => {
+      buttonContainer.style.display = "block";
+      button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
+
+      // Turn loop back on after first playthrough
+      video.loop = true;
+      video.play();
+    }, { once: true });
+
+    // Optional: Handle button click
+    button.addEventListener("click", () => {
+      window.location.href = "realty.html"; // or any page you want
     });
   </script>
+
 </body>
 </html>
