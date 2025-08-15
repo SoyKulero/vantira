@@ -25,12 +25,10 @@ video {
 /* Moved button to left-center */
 .button-container {
   position: absolute;
-  top: 50%;
+  top: 5%;
   left: 5%;
-  transform: translateY(-50%);
   z-index: 2;
   display: none;
-  text-align: left;
 }
 
 #vantiraButton {
