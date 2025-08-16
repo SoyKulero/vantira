@@ -24,9 +24,9 @@ video {
 
 /* Moved button to left-center */
 .button-container {
-  position: fixed; /* <-- Fixed to the user's screen */
-  top: 1rem;
-  left: 1rem;
+  position: fixed;      /* Stick to screen */
+  top: 1rem;            /* Distance from top */
+  left: 1rem;           /* Distance from left */
   z-index: 2;
   display: none;
 }
