@@ -8,26 +8,37 @@
 </head>
 <body>
 
-  <!-- 🎥 Video Background -->
+  <!-- 🎥 Fullscreen Video Background -->
   <video id="heroVideo" autoplay muted playsinline>
-    <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
+    <source src="assets/Vantira_welcome_video.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- 🟨 Button (Appears After Video) -->
+  <!-- 🟨 Vantira Realty Button -->
   <div class="button-container">
-    <button id="vantiraButton">Vantira Realty</button>
+    <button id="vantiraButton" aria-label="Enter Vantira Realty site">Vantira Realty</button>
   </div>
 
-  <!-- 🧠 JavaScript -->
+  <!-- 🏁 Tagline Banner Image -->
+  <div class="tagline-banner" id="taglineBanner">
+    <img src="assets/agreements-without-the-hassles.png" alt="Agreements without the hassles" />
+  </div>
+
+  <!-- 🧠 JavaScript Logic -->
   <script>
     const video = document.getElementById("heroVideo");
     const buttonContainer = document.querySelector(".button-container");
     const button = document.getElementById("vantiraButton");
+    const taglineBanner = document.getElementById("taglineBanner");
 
     video.addEventListener("ended", () => {
       buttonContainer.style.display = "block";
       button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
+
+      // Show tagline banner after button
+      setTimeout(() => {
+        taglineBanner.classList.add("show");
+      }, 1000);
     }, { once: true });
 
     button.addEventListener("click", () => {
