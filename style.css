@@ -1,3 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* 🏁 Transparent Text Banner (HTML/CSS version) */
 .tagline-banner {
   position: fixed;
@@ -52,4 +60,20 @@
   .tagline-content p {
     font-size: 1rem;
   }
+}
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+.button-container {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  display: none;
 }
