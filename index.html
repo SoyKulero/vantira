@@ -1,89 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vantira</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .button-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      display: none;
-      text-align: center;
-    }
-
-    #vantiraButton {
-      padding: 1rem 2.5rem;
-      border: 2px solid gold;
-      background-color: rgba(0, 0, 0, 0.4);
-      color: gold;
-      font-weight: bold;
-      font-size: 1.3rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      opacity: 0;
-    }
-
-    #vantiraButton:hover {
-      background-color: gold;
-      color: black;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-    }
-
-    @keyframes luxuryFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ✅ Mobile Friendly */
-    @media (max-width: 768px) {
-      #vantiraButton {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      #vantiraButton {
-        font-size: 0.9rem;
-        padding: 0.6rem 1.2rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
