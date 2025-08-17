@@ -7,36 +7,33 @@
   <title>Vantira</title>
 </head>
 <body>
- <!-- 🎗️ Gold Banner Tagline -->
-<div class="gold-banner" id="goldBanner">
-  <div class="ribbon-top"></div>
-  <div class="ribbon-body">
-    <h1>Agreements</h1>
-    <p>without the hassles</p>
+
+  <!-- 🎥 Video Background -->
+  <video id="heroVideo" autoplay muted playsinline>
+    <source src="assets/20250625_1357_VANTIRA Office Atmosphere_remix_01jym7804cew6rw084pxzyz9k9.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🟨 Button (Appears After Video) -->
+  <div class="button-container">
+    <button id="vantiraButton">Vantira Realty</button>
   </div>
-  <div class="ribbon-bottom"></div>
-</div>
 
-<!-- ✅ JavaScript -->
-<script>
-  const video = document.getElementById("heroVideo");
-  const buttonContainer = document.querySelector(".button-container");
-  const button = document.getElementById("vantiraButton");
-  const goldBanner = document.getElementById("goldBanner");
+  <!-- 🧠 JavaScript -->
+  <script>
+    const video = document.getElementById("heroVideo");
+    const buttonContainer = document.querySelector(".button-container");
+    const button = document.getElementById("vantiraButton");
 
-  video.addEventListener("ended", () => {
-    buttonContainer.style.display = "block";
-    button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
+    video.addEventListener("ended", () => {
+      buttonContainer.style.display = "block";
+      button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
+    }, { once: true });
 
-    // Reveal banner
-    setTimeout(() => {
-      goldBanner.classList.add("show");
-    }, 1000);
-  }, { once: true });
+    button.addEventListener("click", () => {
+      window.location.href = "realty.html";
+    });
+  </script>
 
-  button.addEventListener("click", () => {
-    window.location.href = "realty.html";
-  });
-</script>
 </body>
 </html>

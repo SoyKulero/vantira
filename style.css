@@ -22,11 +22,10 @@ video {
   z-index: 0;
 }
 
-/* Moved button to left-center */
 .button-container {
-  position: fixed;      /* Stick to screen */
-  top: 1rem;            /* Distance from top */
-  left: 1rem;           /* Distance from left */
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
   z-index: 2;
   display: none;
 }
@@ -61,7 +60,7 @@ video {
   }
 }
 
-/* ✅ Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
   #vantiraButton {
     font-size: 1rem;
@@ -73,169 +72,5 @@ video {
   #vantiraButton {
     font-size: 0.9rem;
     padding: 0.6rem 1.2rem;
-  }
-}
-/* 🟨 Bottom Tagline Styling */
-.bottom-tagline {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgb(226, 194, 11);
-  font-size: 1.2rem;
-  font-weight: 500;
-  opacity: 0;
-  z-index: 2;
-  transition: all 1s ease;
-  text-align: center;
-}
-
-.bottom-tagline.show {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .bottom-tagline {
-    font-size: 1rem;
-    bottom: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .bottom-tagline {
-    font-size: 0.9rem;
-    bottom: 1rem;
-  }
-}
-/* 🟨 Gold Ribbon Banner */
-.gold-banner {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  opacity: 0;
-  z-index: 3;
-  transition: opacity 1s ease-out;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
-.gold-banner.show {
-  opacity: 1;
-}
-
-.ribbon-top,
-.ribbon-bottom {
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(to bottom, #f5c542, #d4af37);
-  border-radius: 10px;
-}
-
-.ribbon-body {
-  background: linear-gradient(to bottom, #ffe082, #d4af37);
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.ribbon-body h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #222;
-  margin: 0;
-}
-
-.ribbon-body p {
-  font-size: 1rem;
-  color: #333;
-  margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .ribbon-body h1 {
-    font-size: 1.4rem;
-  }
-  .ribbon-body p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .ribbon-body {
-    padding: 0.8rem 1.5rem;
-  }
-  .ribbon-body h1 {
-    font-size: 1.1rem;
-  }
-  .ribbon-body p {
-    font-size: 0.8rem;
-  }
-}
-/* 🟨 Gold Banner Style */
-.gold-banner {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  opacity: 0;
-  z-index: 3;
-  transition: opacity 1s ease-out;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
-.gold-banner.show {
-  opacity: 1;
-}
-
-.ribbon-top,
-.ribbon-bottom {
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(to bottom, #f5c542, #d4af37);
-  border-radius: 10px;
-}
-
-.ribbon-body {
-  background: linear-gradient(to bottom, #ffe082, #d4af37);
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.ribbon-body h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #222;
-  margin: 0;
-}
-
-.ribbon-body p {
-  font-size: 1rem;
-  color: #333;
-  margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .ribbon-body h1 {
-    font-size: 1.4rem;
-  }
-  .ribbon-body p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .ribbon-body {
-    padding: 0.8rem 1.5rem;
-  }
-  .ribbon-body h1 {
-    font-size: 1.1rem;
-  }
-  .ribbon-body p {
-    font-size: 0.8rem;
   }
 }
