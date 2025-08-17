@@ -19,9 +19,12 @@
     <button id="vantiraButton" aria-label="Enter Vantira Realty site">Vantira Realty</button>
   </div>
 
-  <!-- 🏁 Tagline Banner Image -->
+  <!-- 🏁 Transparent Modern Tagline -->
   <div class="tagline-banner" id="taglineBanner">
-    <img src="assets/agreements-without-the-hassles.png" alt="Agreements without the hassles" />
+    <div class="tagline-content">
+      <h1>Agreements</h1>
+      <p>without the hassles</p>
+    </div>
   </div>
 
   <!-- 🧠 JavaScript Logic -->
@@ -35,7 +38,6 @@
       buttonContainer.style.display = "block";
       button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
 
-      // Show tagline banner after button
       setTimeout(() => {
         taglineBanner.classList.add("show");
       }, 1000);
