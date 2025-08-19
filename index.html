@@ -8,9 +8,9 @@
 </head>
 <body>
 
-  <!-- 🎥 Fullscreen Video Background -->
-  <video id="heroVideo" autoplay muted playsinline>
-    <source src="assets/Vantira_welcome_video.mp4" type="video/mp4" />
+  <!-- 🎥 Fullscreen Video Background with Fallback -->
+  <video id="heroVideo" autoplay muted playsinline poster="assets/poster.jpg">
+    <source data-src="assets/Vantira_welcome_video.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
@@ -30,10 +30,22 @@
   <!-- 🧠 JavaScript Logic -->
   <script>
     const video = document.getElementById("heroVideo");
+    const source = video.querySelector("source");
     const buttonContainer = document.querySelector(".button-container");
     const button = document.getElementById("vantiraButton");
     const taglineBanner = document.getElementById("taglineBanner");
 
+    // Mobile optimization: only load video if connection is decent or screen is large
+    const shouldLoadVideo =
+      window.innerWidth > 768 &&
+      (!navigator.connection || navigator.connection.downlink > 1.5);
+
+    if (shouldLoadVideo) {
+      source.src = source.dataset.src;
+      video.load();
+    }
+
+    // Button and banner appear after video ends
     video.addEventListener("ended", () => {
       buttonContainer.style.display = "block";
       button.style.animation = "luxuryFadeIn 1.5s ease-out forwards";
