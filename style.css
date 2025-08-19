@@ -1,3 +1,4 @@
+/* Reset & Fullscreen View */
 html, body {
   margin: 0;
   padding: 0;
@@ -6,7 +7,58 @@ html, body {
   overflow: hidden;
 }
 
-/* 🏁 Transparent Text Banner (HTML/CSS version) */
+/* 🎥 Fullscreen Video Background */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* 🟨 Button: Hidden at load, appears top-left after video */
+.button-container {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: none;
+}
+
+#vantiraButton {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid gold;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: gold;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+
+#vantiraButton:hover {
+  background-color: gold;
+  color: black;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+/* Fade-in animation for button */
+@keyframes luxuryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🏁 Transparent Modern Tagline */
 .tagline-banner {
   position: fixed;
   bottom: 2rem;
@@ -53,6 +105,11 @@ html, body {
 
 /* 📱 Responsive */
 @media (max-width: 768px) {
+  #vantiraButton {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
   .tagline-content h1 {
     font-size: 1.5rem;
   }
@@ -60,20 +117,4 @@ html, body {
   .tagline-content p {
     font-size: 1rem;
   }
-}
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-}
-.button-container {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 2;
-  display: none;
 }
